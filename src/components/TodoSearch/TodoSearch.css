@@ -1,0 +1,32 @@
+.todoList {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.todoList div {
+  display: flex;
+  max-width: 300px;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 5px;
+  border: 2px solid #9b479b;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.2);
+}
+
+.todoList .searchIcon {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.todoList input {
+  width: 75%;
+  max-width: 300px;
+  padding: 5px;
+  outline: none;
+  border: none;
+  font-size: 25px;
+  font-weight: bold;
+}
