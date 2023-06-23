@@ -32,14 +32,18 @@ const App = () => {
     return todo.text.toLowerCase().includes(searchValue.toLowerCase());
   });
 
-  const handleToggleCompleted = (updateTodo) => {
-    const updateTodos = todos.map((todo) => {
-      if (todo.key === updateTodo.key) {
-        return updateTodo;
-      }
-      return todo;
-    });
-    setTodos(updateTodos);
+  const completeTodo = (key) => {
+    const newTodos = [...todos];
+    const todoIndex = newTodos.findIndex((todo) => todo.key === key);
+    newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
+    setTodos(newTodos);
+  };
+
+  const removeTodo = (key) => {
+    const newTodos = [...todos];
+    const todoIndex = newTodos.findIndex((todo) => todo.key === key);
+    newTodos.splice(todoIndex, 1);
+    setTodos(newTodos);
   };
 
   const completedTodos = todos.filter((todo) => todo.completed).length;
@@ -51,11 +55,11 @@ const App = () => {
         {searchedTodo.map((todo) => {
           return (
             <TodoItem
-              todo={todo}
               key={todo.key}
               text={todo.text}
               completed={todo.completed}
-              onToggleCompleted={handleToggleCompleted}
+              onComplete={() => completeTodo(todo.key)}
+              remove={() => removeTodo(todo.key)}
             />
           );
         })}
