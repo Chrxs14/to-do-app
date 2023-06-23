@@ -5,32 +5,57 @@ import { TodoCounter } from "./components/TodoCounter/TodoCounter";
 import { TodoList } from "./components/TodoList/TodoList";
 import { TodoSearch } from "./components/TodoSearch/TodoSearch";
 import { CreateTodoButton } from "./components/CreateTodoButton/CreateTodoButton";
-
 const defaultTodos = [
   {
+    key: 1,
     text: "Cortar cebolla Cortar cebolla Cortar cebolla Cortar cebolla Cortar cebolla Cortar cebolla",
     completed: true,
   },
   {
-    text: "Cortar cebolla Cortar cebolla Cortar cebolla Cortar cebolla Cortar cebolla Cortar cebolla",
+    key: 2,
+    text: "Cortar tomate Cortar tomate Cortar tomate Cortar tomate Cortar tomate",
     completed: true,
   },
-  { text: "Cortar cebolla 2", completed: false },
-  { text: "Cortar cebolla 3", completed: false },
+  { key: 3, text: "Cortar cebolla 2", completed: false },
+  { key: "cortarCebolla3", text: "Cortar cebolla 3", completed: false },
+  {
+    key: 4,
+    text: "Cortar tomate Cortar tomate Cortar tomate Cortar tomate Cortar tomate",
+    completed: true,
+  },
 ];
 
 const App = () => {
+  const [todos, setTodos] = React.useState(defaultTodos);
+  const [searchValue, setSearchValue] = React.useState("");
+  const searchedTodo = todos.filter((todo) => {
+    return todo.text.toLowerCase().includes(searchValue.toLowerCase());
+  });
+
+  const handleToggleCompleted = (updateTodo) => {
+    const updateTodos = todos.map((todo) => {
+      if (todo.key === updateTodo.key) {
+        return updateTodo;
+      }
+      return todo;
+    });
+    setTodos(updateTodos);
+  };
+
+  const completedTodos = todos.filter((todo) => todo.completed).length;
   return (
     <>
-      <TodoCounter completed={16} total={25} />
-      <TodoSearch />
+      <TodoCounter completed={completedTodos} total={todos.length} />
+      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       <TodoList>
-        {defaultTodos.map((todo) => {
+        {searchedTodo.map((todo) => {
           return (
             <TodoItem
-              key={todo.text}
+              todo={todo}
+              key={todo.key}
               text={todo.text}
               completed={todo.completed}
+              onToggleCompleted={handleToggleCompleted}
             />
           );
         })}

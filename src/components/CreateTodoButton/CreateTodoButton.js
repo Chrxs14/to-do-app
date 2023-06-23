@@ -4,7 +4,14 @@ import "./CreateTodoButton.css";
 const CreateTodoButton = () => {
   return (
     <div className="buttonCreate">
-      <button>Create</button>
+      <button
+        onClick={(event) => {
+          console.log("Hola");
+          console.log(event);
+        }}
+      >
+        Create
+      </button>
     </div>
   );
 };
