@@ -13,7 +13,9 @@
   padding: 15px;
   box-shadow: 0px 9px 5px 0px rgba(0, 0, 0, 0.2);
 }
-
+.congrats {
+  text-align: center;
+}
 .header p {
   margin: 0;
 

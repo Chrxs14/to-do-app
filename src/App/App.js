@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import { useLocalStorage } from "./useLocalStorage";
 import { AppUi } from "./AppUi";
+import { TodoProvider } from "../TodoContext/TodoContext";
 
 /*
 // const defaultTodos = [
@@ -26,37 +26,10 @@ import { AppUi } from "./AppUi";
 */
 
 const App = () => {
-  const [todos, saveTodos] = useLocalStorage("TODOS_V1", []);
-  const [searchValue, setSearchValue] = React.useState("");
-  const searchedTodo = todos.filter((todo) => {
-    return todo.text.toLowerCase().includes(searchValue.toLowerCase());
-  });
-
-  const completeTodo = (key) => {
-    const newTodos = [...todos];
-    const todoIndex = newTodos.findIndex((todo) => todo.key === key);
-    newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
-    saveTodos(newTodos);
-  };
-
-  const removeTodo = (key) => {
-    const newTodos = [...todos];
-    const todoIndex = newTodos.findIndex((todo) => todo.key === key);
-    newTodos.splice(todoIndex, 1);
-    saveTodos(newTodos);
-  };
-
-  const completedTodos = todos.filter((todo) => todo.completed).length;
   return (
-    <AppUi
-      completedTodos={completedTodos}
-      removeTodo={removeTodo}
-      completeTodo={completeTodo}
-      searchedTodo={searchedTodo}
-      todos={todos}
-      searchValue={searchValue}
-      setSearchValue={setSearchValue}
-    />
+    <TodoProvider>
+      <AppUi />
+    </TodoProvider>
   );
 };
 

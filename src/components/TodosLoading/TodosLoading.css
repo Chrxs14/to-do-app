@@ -1,0 +1,12 @@
+li {
+  display: flex;
+  max-width: 280px;
+  min-width: 280px;
+  min-height: 100px;
+  align-items: center;
+  justify-content: space-around;
+  gap: 25px;
+  border: 2px solid #9b479b;
+  padding: 20px;
+  box-shadow: 9px 9px 5px 0px rgba(0, 0, 0, 0.2);
+}
