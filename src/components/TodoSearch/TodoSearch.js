@@ -14,7 +14,6 @@ const TodoSearch = () => {
           placeholder="Buscar"
           value={searchValue}
           onChange={(event) => {
-            console.log(searchValue);
             setSearchValue(event.target.value);
           }}
         ></input>
