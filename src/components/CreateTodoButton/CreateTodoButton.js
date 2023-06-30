@@ -1,16 +1,19 @@
 import React from "react";
+import { AiOutlinePlus } from "react-icons/ai";
 import "./CreateTodoButton.css";
 
-const CreateTodoButton = () => {
+const CreateTodoButton = ({ openModal, setOpenModal }) => {
   return (
     <div className="buttonCreate">
       <button
         onClick={(event) => {
-          console.log("Hola");
-          console.log(event);
+          setOpenModal(!openModal);
         }}
+        className={openModal ? "buttonOpen" : "buttonClose"}
       >
-        Create
+        <AiOutlinePlus
+          className={openModal ? "iconCreate-Open" : "iconCreate-Close"}
+        />
       </button>
     </div>
   );

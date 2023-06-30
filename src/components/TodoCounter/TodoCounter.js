@@ -8,6 +8,9 @@ const TodoCounter = () => {
     <div className="header">
       <div className="textHeader">
         {loading && <h3>Cargando tus tareas...</h3>}
+        {todos.length === 0 && (
+          <h3 className="congrats">Crea tu primer tarea!</h3>
+        )}
         {todos.length !== 0 && completedTodos === todos.length && (
           <>
             <h3 className="congrats">Felicidades!</h3>

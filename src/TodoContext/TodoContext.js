@@ -10,6 +10,8 @@ function TodoProvider({ children }) {
     loading,
   } = useLocalStorage("TODOS_V1", []);
   const [searchValue, setSearchValue] = React.useState("");
+  const [openModal, setOpenModal] = React.useState(false);
+
   const searchedTodo = todos.filter((todo) => {
     return todo.text.toLowerCase().includes(searchValue.toLowerCase());
   });
@@ -41,6 +43,8 @@ function TodoProvider({ children }) {
         todos,
         searchValue,
         setSearchValue,
+        openModal,
+        setOpenModal,
       }}
     >
       {children}
